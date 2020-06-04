@@ -49,9 +49,9 @@
   <ItemGroup>
     <Compile Include="BlueInputApp.cs" />
     <Compile Include="BlueInputCategoryNames.cs" />
-    <Compile Include="Components\KeyListener.cs" />
-    <Compile Include="Components\MouseListener.cs" />
-    <Compile Include="Components\ResizeListener.cs" />
+    <None Include="Components\KeyListener.cs" />
+    <None Include="Components\MouseListener.cs" />
+    <None Include="Components\ResizeListener.cs" />
     <Compile Include="CorePlugin.cs" />
     <Compile Include="InputEventArgs.cs" />
     <Compile Include="InputManager.cs" />
