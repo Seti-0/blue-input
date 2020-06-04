@@ -24,17 +24,10 @@ namespace Soulstone.Duality.Plugins.Blue.Input
     public class MouseDragEventArgs : MouseEventArgs
     {
         public Vector2 Origin;
-        public Vector2 Vel;
-        public MouseButton Button;
-        public bool IsPressed;
 
-        public MouseDragEventArgs(MouseInput inputChannel, Vector2 pos, MouseButton button, Vector2 vel, Vector2 origin) : base(inputChannel, pos)
+        public MouseDragEventArgs(MouseInput inputChannel, Vector2 pos, Vector2 origin) : base(inputChannel, pos)
         {
-            Vel = vel;
-            Button = button;
             Origin = origin;
-
-            IsPressed = DualityApp.Mouse.ButtonPressed(button);
         }
     }
 }

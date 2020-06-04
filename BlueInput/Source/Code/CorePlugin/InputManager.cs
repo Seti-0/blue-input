@@ -20,10 +20,8 @@ namespace Soulstone.Duality.Plugins.Blue.Input
         [DontSerialize] private ICmpRenderer _mouseFocus;
 
         [DontSerialize] private bool _dragging;
-
         [DontSerialize] private Vector2 _currentDragOrigin;
-        [DontSerialize] private MouseButton _currentDragButton;
-        [DontSerialize] private MouseInput _currentDragInput;
+
 
         [DontSerialize] private Vector2 _lastWindowSize;
 
@@ -146,18 +144,17 @@ namespace Soulstone.Duality.Plugins.Blue.Input
             return renderer;
         }
 
-        private void StartDrag(MouseInput input, MouseButton button)
+        private void StartDrag()
         {
             EndDrag();
 
-            _currentDragInput = input;
-            _currentDragButton = button;
-            _currentDragOrigin = _currentDragInput.Pos;
+            var input = DualityApp.Mouse;
+            var pos = input.Pos;
 
+            _currentDragOrigin = pos;
             _dragging = true;
 
-            var e = new MouseDragEventArgs(_currentDragInput, _currentDragInput.Pos,
-                _currentDragButton, _currentDragInput.Vel, _currentDragOrigin);
+            var e = new MouseDragEventArgs(input, pos: pos, origin: pos);
 
             foreach (var listener in FindActiveComponents<ICmpMouseDragListener>())
                 listener.OnDragStart(e);
@@ -168,8 +165,10 @@ namespace Soulstone.Duality.Plugins.Blue.Input
             if (!_dragging)
                 return;
 
-            var e = new MouseDragEventArgs(_currentDragInput, _currentDragInput.Pos,
-                _currentDragButton, _currentDragInput.Vel, _currentDragOrigin);
+            var input = DualityApp.Mouse;
+            var pos = input.Pos;
+
+            var e = new MouseDragEventArgs(input, pos, _currentDragOrigin);
 
             foreach (var listener in FindActiveComponents<ICmpMouseDragListener>())
                 listener.OnDragContinue(e);
@@ -182,10 +181,10 @@ namespace Soulstone.Duality.Plugins.Blue.Input
 
             _dragging = false;
 
-            var e = new MouseDragEventArgs(_currentDragInput, _currentDragInput.Pos,
-                _currentDragButton, _currentDragInput.Vel, _currentDragOrigin);
+            var input = DualityApp.Mouse;
+            var pos = input.Pos;
 
-            _currentDragInput = null;
+            var e = new MouseDragEventArgs(input, pos, _currentDragOrigin);
 
             foreach (var listener in FindActiveComponents<ICmpMouseDragListener>())
                 listener.OnDragEnd(e);
@@ -268,7 +267,7 @@ namespace Soulstone.Duality.Plugins.Blue.Input
 
             UpdateMouseFocus();
 
-            StartDrag(e.InputChannel as MouseInput, e.Button);
+            StartDrag();
 
             foreach (var listener in FindActiveComponents<ICmpMouseListener>())
                 listener.OnButtonDown(e);
