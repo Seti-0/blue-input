@@ -48,12 +48,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BlueInputApp.cs" />
-    <Compile Include="BlueInputCategoryNames.cs" />
+    <Compile Include="Testing\InputEventTest.cs" />
+    <Compile Include="Testing\MouseFocusTest.cs" />
     <None Include="Components\KeyListener.cs" />
     <None Include="Components\MouseListener.cs" />
     <None Include="Components\ResizeListener.cs" />
+    <Compile Include="CategoryNames.cs" />
     <Compile Include="CorePlugin.cs" />
-    <Compile Include="InputEventArgs.cs" />
+    <Compile Include="Events\MouseDragEventArgs.cs" />
+    <Compile Include="Events\ResizeEventArgs.cs" />
     <Compile Include="InputManager.cs" />
     <Compile Include="Interfaces\ICmpKeyListener.cs" />
     <Compile Include="Interfaces\ICmpMouseDragListener.cs" />

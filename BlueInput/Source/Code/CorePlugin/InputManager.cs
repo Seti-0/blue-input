@@ -8,13 +8,15 @@ using Duality;
 using Duality.Drawing;
 using Duality.Input;
 using Duality.Components;
+using Duality.Resources;
+using Duality.Editor;
 
 namespace Soulstone.Duality.Plugins.Blue.Input
 {
+    [EditorHintCategory(CategoryNames.Components)]
     public class InputManager : Component, ICmpInitializable, ICmpUpdatable
     {
-        // I'm not sure DontSerialize is relevant here, would Duality ever serialize this?
-        // Better safe than sorry, though.
+        public Camera Camera { get; set; }
 
         [DontSerialize] private ICmpRenderer _mouseFocus;
 
@@ -106,51 +108,55 @@ namespace Soulstone.Duality.Plugins.Blue.Input
 
         private ICmpRenderer GetRendererUnderMouse()
         {
-            ICmpRenderer renderer = null;
+            // This has been an interesting experiment, but it is a bit delicate. 
+            
+            // The advantage is out-of-the-box pixel perfect mouse detecting for any renderer, which is lovely.
+            // The disadvantages are possible performance penalities, no flexibility*, and no easy way to fix bugs. 
 
-            if (DualityApp.Mouse.IsAvailable)
-            {
-                renderer = GetRendererUnderMouse(VisibilityFlag.Group1, ProjectionMode.Screen);
-
-                if (renderer == null)
-                    renderer = GetRendererUnderMouse(VisibilityFlag.All & ~VisibilityFlag.Group1, ProjectionMode.Perspective);
-            }
-
-            return renderer;
-        }
-
-        private ICmpRenderer GetRendererUnderMouse(VisibilityFlag groups, ProjectionMode mode)
-        {
-            // This has been an interesting experiment, but it is a bit delicate. The advantage is out-of-the-box pixel perfect mouse detecting for any renderer,
-            // but the disadvantages are performance penalities, no flexibility*, and no easy way to fix bugs. Might be worth looking 
-            // at making a manual alternative to this.
+            // Might be worth looking at making a manual alternative to this.
 
             // *One might want a bounding radius for items that are partially transparent or very small. 
 
-            // Consider making the input manager a component, and this a property?
-            var camera = Scene.FindComponent<Camera>();
-
-            if (camera == null)
-            {
-                return null;
-            }
+            var camera = Camera ?? Scene.FindComponent<Camera>();
+            if (camera == null) return null;
 
             DualityApp.CalculateGameViewport(DualityApp.WindowSize, out Rect viewportRect, out Vector2 imageSize);
+            var viewPortSize = new Point2(MathF.RoundToInt(viewportRect.W), MathF.RoundToInt(viewportRect.H));
+
+            var renderSetup = camera.ActiveRenderSetup;
 
             var originalMask = camera.VisibilityMask;
             var originalProjection = camera.Projection;
+            var originalRenderTarget = camera.Target;
 
-            camera.VisibilityMask = groups;
-            camera.Projection = mode;
+            ICmpRenderer renderer = null;
 
-            // This can be dodgy if there are cameras with custom render targets
-            camera.RenderPickingMap(new Point2(MathF.RoundToInt(viewportRect.W), MathF.RoundToInt(viewportRect.H)),
-                imageSize, true);
+            foreach (var step in Enumerable.Reverse(renderSetup.Steps))
+            {
+                // This section is very shaky. I very much doubt I've covered all the options in terms
+                // of ways Cameras and RenderSetups can be configured.
 
-            ICmpRenderer renderer = camera.PickRendererAt((int)DualityApp.Mouse.Pos.X, (int)DualityApp.Mouse.Pos.Y);
+                // I'm not sure about this in particular. Can the screen be a custom render target?
+                // Not worrying about it for now though.
+                if (step.Output != null) continue;
+
+                camera.VisibilityMask = step.VisibilityMask;
+                camera.Projection = step.Projection;
+                camera.Target = null;
+
+                // Currently, don't include the overlay. If this becomes important later I think
+                // it should be done separately.
+                bool renderOverlay = false;
+
+                camera.RenderPickingMap(viewPortSize, imageSize, renderOverlay);
+
+                renderer = camera.PickRendererAt((int)DualityApp.Mouse.Pos.X, (int)DualityApp.Mouse.Pos.Y);
+                if (renderer != null) break;
+            }
 
             camera.VisibilityMask = originalMask;
             camera.Projection = originalProjection;
+            camera.Target = originalRenderTarget;
 
             return renderer;
         }
