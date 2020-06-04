@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Duality;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Soulstone.Duality.Plugins.Blue.Input
 {
-    public interface ICmpMouseDragListener : ICmpLocalInputListener
+    public interface ICmpMouseDragListener : IManageableObject
     {
         void OnDragStart(MouseDragEventArgs args);
 

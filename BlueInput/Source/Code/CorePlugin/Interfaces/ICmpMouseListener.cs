@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Duality;
 using Duality.Input;
 
 namespace Soulstone.Duality.Plugins.Blue.Input
 {
-    public interface ICmpMouseListener : ICmpLocalInputListener
+    public interface ICmpMouseListener : IManageableObject
     {
-        void OnGainedFocus(EventArgs args);
+        void OnMouseEnter(EventArgs args);
 
-        void OnLostFocus(EventArgs args);
+        void OnMouseExit(EventArgs args);
 
         void OnMove(MouseMoveEventArgs args);
 
