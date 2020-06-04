@@ -47,10 +47,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlueInputApp.cs" />
+    <Compile Include="BlueInputCategoryNames.cs" />
+    <Compile Include="Components\KeyListener.cs" />
+    <Compile Include="Components\MouseListener.cs" />
+    <Compile Include="Components\ResizeListener.cs" />
     <Compile Include="CorePlugin.cs" />
-    <Compile Include="YourCustomComponentType.cs" />
+    <Compile Include="InputEventArgs.cs" />
+    <Compile Include="InputManager.cs" />
+    <Compile Include="Interfaces\ICmpKeyListener.cs" />
+    <Compile Include="Interfaces\ICmpLocalInputListener.cs" />
+    <Compile Include="Interfaces\ICmpMouseDragListener.cs" />
+    <Compile Include="Interfaces\ICmpMouseListener.cs" />
+    <Compile Include="Interfaces\ICmpMouseWheelListener.cs" />
+    <Compile Include="Interfaces\ICmpResizeListener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- Copy all plugin binaries to the plugin folder -->
   <Import Project="$(SolutionDir)AggregateUserPlugins.targets" />

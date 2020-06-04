@@ -5,13 +5,23 @@ using System.Text;
 
 using Duality;
 
-namespace Duality_
+namespace Soulstone.Duality.Plugins.Blue.Input
 {
-	/// <summary>
-	/// Defines a Duality core plugin.
-	/// </summary>
-	public class Duality_CorePlugin : CorePlugin
+	public class BlueInputPlugin : CorePlugin
 	{
-		// Override methods here for global logic
+		protected override void InitPlugin()
+		{
+			BlueInputApp.Init();
+		}
+
+		protected override void OnDisposePlugin()
+		{
+			BlueInputApp.Cleanup();
+		}
+
+		protected override void OnBeforeUpdate()
+		{
+			BlueInputApp.Update();
+		}
 	}
 }
