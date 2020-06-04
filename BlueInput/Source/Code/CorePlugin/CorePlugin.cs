@@ -7,21 +7,5 @@ using Duality;
 
 namespace Soulstone.Duality.Plugins.Blue.Input
 {
-	public class BlueInputPlugin : CorePlugin
-	{
-		protected override void InitPlugin()
-		{
-			BlueInputApp.Init();
-		}
-
-		protected override void OnDisposePlugin()
-		{
-			BlueInputApp.Cleanup();
-		}
-
-		protected override void OnBeforeUpdate()
-		{
-			BlueInputApp.Update();
-		}
-	}
+	public class BlueInputPlugin : CorePlugin {}
 }
