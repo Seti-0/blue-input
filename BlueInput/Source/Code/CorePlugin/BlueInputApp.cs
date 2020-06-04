@@ -5,40 +5,32 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Duality;
+using Duality.Resources;
 
 namespace Soulstone.Duality.Plugins.Blue.Input
 {
     public static class BlueInputApp
     {
-        [DontSerialize] // I'm not sure Duality would ever serialize a static field, but just in case.
-        private static InputManager _inputManager = null;
+        [DontSerialize] private static InputManager _manager;
 
         public static InputManager Input
         {
-            get => _inputManager;
-        }
-
-        public static void Init()
-        {
-            if (_inputManager == null)
+            get
             {
-                _inputManager = new InputManager();
-                _inputManager.Initialize();
-            }
-        }
+                if (_manager == null || _manager.Scene != Scene.Current)
+                    _manager = Scene.Current.FindComponent<InputManager>();
 
-        public static void Update()
-        {
-            _inputManager?.Update();
-        }
+                if (_manager == null)
+                {
+                    GameObject obj = new GameObject("Input Manager");
+                    _manager = obj.AddComponent<InputManager>();
+                    Scene.Current.AddObject(obj);
+                }
 
-        public static void Cleanup()
-        {
-            if (_inputManager != null)
-            {
-                _inputManager.Dispose();
-                _inputManager = null;
+                return _manager;
             }
+
+            set => _manager = value;
         }
     }
 }

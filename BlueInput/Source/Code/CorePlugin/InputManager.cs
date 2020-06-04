@@ -8,11 +8,10 @@ using Duality;
 using Duality.Drawing;
 using Duality.Input;
 using Duality.Components;
-using Duality.Resources;
 
 namespace Soulstone.Duality.Plugins.Blue.Input
 {
-    public class InputManager : IDisposable
+    public class InputManager : Component, ICmpInitializable, ICmpUpdatable
     {
         // I'm not sure DontSerialize is relevant here, would Duality ever serialize this?
         // Better safe than sorry, though.
@@ -30,14 +29,24 @@ namespace Soulstone.Duality.Plugins.Blue.Input
             get => _mouseFocus;
         }
 
-        private IEnumerable<T> FindActiveComponents<T>() where T : class, IManageableObject
+        public void OnActivate()
         {
-            return Scene.Current.FindComponents<T>()
-                .Where(x => x.Active);
+            _lastWindowSize = DualityApp.TargetViewSize;
+
+            SetupListeners();
         }
 
-        public void Initialize()
+        public void OnDeactivate()
         {
+            EndDrag();
+
+            ClearListeners();
+        }
+
+        private void SetupListeners()
+        {
+            ClearListeners();
+
             DualityApp.Mouse.Move += Mouse_Move;
             DualityApp.Mouse.ButtonDown += Mouse_ButtonDown;
             DualityApp.Mouse.ButtonUp += Mouse_ButtonUp;
@@ -49,14 +58,10 @@ namespace Soulstone.Duality.Plugins.Blue.Input
             DualityApp.Keyboard.KeyUp += Keyboard_KeyUp;
             DualityApp.Keyboard.BecomesAvailable += Keyboard_BecomesAvailable;
             DualityApp.Keyboard.NoLongerAvailable += Keyboard_NoLongerAvailable;
-
-            _lastWindowSize = DualityApp.TargetViewSize;
         }
 
-        public void Dispose()
+        private void ClearListeners()
         {
-            EndDrag();
-
             DualityApp.Mouse.Move -= Mouse_Move;
             DualityApp.Mouse.ButtonDown -= Mouse_ButtonDown;
             DualityApp.Mouse.ButtonUp -= Mouse_ButtonUp;
@@ -70,7 +75,13 @@ namespace Soulstone.Duality.Plugins.Blue.Input
             DualityApp.Keyboard.NoLongerAvailable -= Keyboard_NoLongerAvailable;
         }
 
-        public void Update()
+        private IEnumerable<T> FindActiveComponents<T>() where T : class, IManageableObject
+        {
+            return Scene.FindComponents<T>()
+                .Where(x => x.Active);
+        }
+
+        public void OnUpdate()
         {
             // I'd rather not call this every frame. 
             // Can one listen for window size changes?
@@ -117,7 +128,7 @@ namespace Soulstone.Duality.Plugins.Blue.Input
             // *One might want a bounding radius for items that are partially transparent or very small. 
 
             // Consider making the input manager a component, and this a property?
-            var camera = Scene.Current.FindComponent<Camera>();
+            var camera = Scene.FindComponent<Camera>();
 
             if (camera == null)
             {
@@ -192,30 +203,40 @@ namespace Soulstone.Duality.Plugins.Blue.Input
 
         private void Keyboard_KeyDown(object sender, KeyboardKeyEventArgs e)
         {
+            if (!Active) return;
+
             foreach (var listener in FindActiveComponents<ICmpKeyListener>())
                 listener.OnKeyDown(e);
         }
 
         private void Keyboard_KeyUp(object sender, KeyboardKeyEventArgs e)
         {
+            if (!Active) return;
+
             foreach (var listener in FindActiveComponents<ICmpKeyListener>())
                 listener.OnKeyUp(e);
         }
 
         private void Keyboard_NoLongerAvailable(object sender, EventArgs e)
         {
+            if (!Active) return;
+
             foreach (var listener in FindActiveComponents<ICmpKeyListener>())
                 listener.OnNoLongerAvailable(e);
         }
 
         private void Keyboard_BecomesAvailable(object sender, EventArgs e)
         {
+            if (!Active) return;
+
             foreach (var listener in FindActiveComponents<ICmpKeyListener>())
                 listener.OnAvailable(e);
         }
 
         private void Mouse_BecomesAvailable(object sender, EventArgs e)
         {
+            if (!Active) return;
+
             UpdateMouseFocus();
 
             foreach (var listener in FindActiveComponents<ICmpMouseListener>())
@@ -224,6 +245,8 @@ namespace Soulstone.Duality.Plugins.Blue.Input
 
         private void Mouse_NoLongerAvailable(object sender, EventArgs e)
         {
+            if (!Active) return;
+
             EndDrag(); 
             UpdateMouseFocus();
 
@@ -233,6 +256,8 @@ namespace Soulstone.Duality.Plugins.Blue.Input
 
         private void Mouse_WheelChanged(object sender, MouseWheelEventArgs e)
         {
+            if (!Active) return;
+
             UpdateMouseFocus();
 
             foreach (var listener in FindActiveComponents<ICmpMouseWheelListener>())
@@ -240,6 +265,8 @@ namespace Soulstone.Duality.Plugins.Blue.Input
         }
         private void Mouse_Move(object sender, MouseMoveEventArgs e)
         {
+            if (!Active) return;
+
             UpdateMouseFocus();
             ContinueDrag();
 
@@ -249,6 +276,8 @@ namespace Soulstone.Duality.Plugins.Blue.Input
 
         private void Mouse_ButtonUp(object sender, MouseButtonEventArgs e)
         {
+            if (!Active) return;
+
             // Current only one general drag is supported. Silmultaneous drags with different buttons would be
             // a nice feature
             EndDrag();
@@ -261,6 +290,8 @@ namespace Soulstone.Duality.Plugins.Blue.Input
 
         private void Mouse_ButtonDown(object sender, MouseButtonEventArgs e)
         {
+            if (!Active) return;
+
             // Only supporting one drag at a time for now anyways.
             //if(e.Button == _currentDragButton)
             EndDrag();
