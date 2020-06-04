@@ -10,6 +10,7 @@ using Duality.Input;
 using Duality.Components;
 using Duality.Resources;
 using Duality.Editor;
+using Soulstone.Duality.Plugins.Blue.Input.Selection;
 
 namespace Soulstone.Duality.Plugins.Blue.Input
 {
@@ -207,6 +208,92 @@ namespace Soulstone.Duality.Plugins.Blue.Input
                 listener.OnDragEnd(e);
         }
 
+        private void UpdateSelections(SelectionTrigger trigger)
+        {
+            var selections = FindActiveComponents<ICmpSelection>();
+
+            if (_dragging)
+            {
+                selections = selections.Where(x => !x.FreezeOnDrag);
+            }
+
+            foreach (var selection in selections)
+                selection.Update(_mouseFocus, trigger);
+        }
+
+        private void Mouse_BecomesAvailable(object sender, EventArgs e)
+        {
+            if (!Active) return;
+
+            UpdateMouseFocus();
+
+            foreach (var listener in FindActiveComponents<ICmpMouseListener>())
+                listener.OnMouseEnter(e);
+        }
+
+        private void Mouse_NoLongerAvailable(object sender, EventArgs e)
+        {
+            if (!Active) return;
+
+            EndDrag();
+            UpdateMouseFocus();
+
+            foreach (var listener in FindActiveComponents<ICmpMouseListener>())
+                listener.OnMouseExit(e);
+        }
+
+        private void Mouse_WheelChanged(object sender, MouseWheelEventArgs e)
+        {
+            if (!Active) return;
+
+            UpdateMouseFocus();
+
+            foreach (var listener in FindActiveComponents<ICmpMouseWheelListener>())
+                listener.OnWheelChanged(e);
+        }
+        private void Mouse_Move(object sender, MouseMoveEventArgs e)
+        {
+            if (!Active) return;
+
+            UpdateMouseFocus();
+            UpdateSelections(SelectionTrigger.MouseOver);
+
+            ContinueDrag();
+
+            foreach (var listener in FindActiveComponents<ICmpMouseListener>())
+                listener.OnMove(e);
+        }
+
+        private void Mouse_ButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (!Active) return;
+
+            UpdateMouseFocus();
+            UpdateSelections(SelectionTrigger.MouseUp);
+            
+            EndDrag();
+
+            foreach (var listener in FindActiveComponents<ICmpMouseListener>())
+                listener.OnButtonUp(e);
+        }
+
+        private void Mouse_ButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (!Active) return;
+
+            // Only supporting one drag at a time for now anyways.
+            //if(e.Button == _currentDragButton)
+            EndDrag();
+
+            UpdateMouseFocus();
+            UpdateSelections(SelectionTrigger.MouseDown);
+
+            StartDrag();
+
+            foreach (var listener in FindActiveComponents<ICmpMouseListener>())
+                listener.OnButtonDown(e);
+        }
+
         private void Keyboard_KeyDown(object sender, KeyboardKeyEventArgs e)
         {
             if (!Active) return;
@@ -237,77 +324,6 @@ namespace Soulstone.Duality.Plugins.Blue.Input
 
             foreach (var listener in FindActiveComponents<ICmpKeyListener>())
                 listener.OnAvailable(e);
-        }
-
-        private void Mouse_BecomesAvailable(object sender, EventArgs e)
-        {
-            if (!Active) return;
-
-            UpdateMouseFocus();
-
-            foreach (var listener in FindActiveComponents<ICmpMouseListener>())
-                listener.OnMouseEnter(e);
-        }
-
-        private void Mouse_NoLongerAvailable(object sender, EventArgs e)
-        {
-            if (!Active) return;
-
-            EndDrag(); 
-            UpdateMouseFocus();
-
-            foreach (var listener in FindActiveComponents<ICmpMouseListener>())
-                listener.OnMouseExit(e);
-        }
-
-        private void Mouse_WheelChanged(object sender, MouseWheelEventArgs e)
-        {
-            if (!Active) return;
-
-            UpdateMouseFocus();
-
-            foreach (var listener in FindActiveComponents<ICmpMouseWheelListener>())
-                listener.OnWheelChanged(e);
-        }
-        private void Mouse_Move(object sender, MouseMoveEventArgs e)
-        {
-            if (!Active) return;
-
-            UpdateMouseFocus();
-            ContinueDrag();
-
-            foreach (var listener in FindActiveComponents<ICmpMouseListener>())
-                listener.OnMove(e);
-        }
-
-        private void Mouse_ButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            if (!Active) return;
-
-            // Current only one general drag is supported. Silmultaneous drags with different buttons would be
-            // a nice feature
-            EndDrag();
-
-            UpdateMouseFocus();
-
-            foreach (var listener in FindActiveComponents<ICmpMouseListener>())
-                listener.OnButtonUp(e);
-        }
-
-        private void Mouse_ButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (!Active) return;
-
-            // Only supporting one drag at a time for now anyways.
-            //if(e.Button == _currentDragButton)
-            EndDrag();
-
-            UpdateMouseFocus();
-
-            StartDrag();
-
-            foreach (var listener in FindActiveComponents<ICmpMouseListener>())
-                listener.OnButtonDown(e);
         }
     }
 }

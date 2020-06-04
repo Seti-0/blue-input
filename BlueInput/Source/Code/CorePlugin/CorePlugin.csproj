@@ -48,8 +48,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BlueInputApp.cs" />
+    <Compile Include="Selection\ICmpSelection.cs" />
+    <Compile Include="Selection\SelectionChangedEventArgs.cs" />
+    <Compile Include="Selection\Selection.cs" />
+    <Compile Include="Selection\SelectionTrigger.cs" />
     <Compile Include="Testing\InputEventTest.cs" />
     <Compile Include="Testing\MouseFocusTest.cs" />
+    <Compile Include="Testing\SelectionTest.cs" />
     <None Include="Components\KeyListener.cs" />
     <None Include="Components\MouseListener.cs" />
     <None Include="Components\ResizeListener.cs" />
