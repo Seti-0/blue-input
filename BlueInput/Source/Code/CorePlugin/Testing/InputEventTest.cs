@@ -12,7 +12,7 @@ using Duality.Input;
 namespace Soulstone.Duality.Plugins.BlueInput.Testing
 {
     [EditorHintCategory(CategoryNames.Testing)]
-    public class InputEventTest : Component, ICmpUpdatable, ICmpMouseListener, ICmpMouseWheelListener, ICmpMouseDragListener, ICmpKeyListener
+    public class InputEventTest : Component, ICmpUpdatable, ICmpMouseListener, ICmpMouseWheelListener, ICmpMouseDragListener, ICmpKeyListener, ICmpResizeListener
     {
         public float LongLifeTime { get; set; } = 1000;
 
@@ -147,7 +147,7 @@ namespace Soulstone.Duality.Plugins.BlueInput.Testing
             Add("Keyboard no longer available", ColorRgba.Red, 1);
         }
 
-        public void OnMouseEnter(EventArgs args)
+        public void OnMouseEnter(EventArgs e)
         {
             var color = ColorRgba.Green;
 
@@ -159,7 +159,7 @@ namespace Soulstone.Duality.Plugins.BlueInput.Testing
                 .KeepAlive(LongLifeTime, false);
         }
 
-        public void OnMouseExit(EventArgs args)
+        public void OnMouseExit(EventArgs e)
         {
             var color = ColorRgba.Red;
 
@@ -171,101 +171,106 @@ namespace Soulstone.Duality.Plugins.BlueInput.Testing
                 .KeepAlive(LongLifeTime, false);
         }
 
-        public void OnMove(MouseMoveEventArgs args)
+        public void OnMove(MouseMoveEventArgs e)
         {
             var color = ColorRgba.Grey;
 
             AddQuick("Mouse move", color, 4);
 
             VisualLogs.Default
-                .DrawPoint(args.Pos)
+                .DrawPoint(e.Pos)
                 .WithColor(color);
 
             VisualLogs.Default
-                .DrawVector(args.Pos, DualityApp.Mouse.Vel)
+                .DrawVector(e.Pos, DualityApp.Mouse.Vel)
                 .WithColor(ColorRgba.DarkGrey);
         }
 
-        public void OnButtonDown(MouseButtonEventArgs args)
+        public void OnButtonDown(MouseButtonEventArgs e)
         {
             var color = ColorRgba.Blue;
 
-            Add($"Button Down: {args.Button}", color, 5);
+            Add($"Button Down: {e.Button}", color, 5);
 
             VisualLogs.Default
-                .DrawPoint(args.Pos)
+                .DrawPoint(e.Pos)
                 .WithColor(color)
                 .KeepAlive(LongLifeTime, false);
         }
 
-        public void OnButtonUp(MouseButtonEventArgs args)
+        public void OnButtonUp(MouseButtonEventArgs e)
         {
             var color = ColorRgba.Green;
 
-            Add($"Button Up: {args.Button}", color, 6);
+            Add($"Button Up: {e.Button}", color, 6);
 
             VisualLogs.Default
-                .DrawPoint(args.Pos)
+                .DrawPoint(e.Pos)
                 .WithColor(color)
                 .KeepAlive(LongLifeTime, false);
         }
 
-        public void OnDragStart(MouseDragEventArgs args)
+        public void OnDragStart(MouseDragEventArgs e)
         {
             var color = ColorRgba.Blue;
 
             Add($"Drag start", color, 7);
 
             VisualLogs.Default
-                .DrawPoint(args.Pos)
+                .DrawPoint(e.Pos)
                 .WithColor(color)
                 .KeepAlive(LongLifeTime, false);
         }
 
-        public void OnDragContinue(MouseDragEventArgs args)
+        public void OnDragContinue(MouseDragEventArgs e)
         {
             var color = ColorRgba.Blue;
 
             AddQuick($"Drag Continue", color, 8);
 
             VisualLogs.Default
-                .DrawPoint(args.Pos)
+                .DrawPoint(e.Pos)
                 .WithColor(color);
 
             VisualLogs.Default
-                .DrawPoint(args.Origin)
+                .DrawPoint(e.Origin)
                 .WithColor(color);
 
             VisualLogs.Default
-                .DrawVector(args.Origin, args.Pos - args.Origin)
+                .DrawVector(e.Origin, e.Pos - e.Origin)
                 .WithColor(ColorRgba.Grey);
         }
 
-        public void OnDragEnd(MouseDragEventArgs args)
+        public void OnDragEnd(MouseDragEventArgs e)
         {
             var color = ColorRgba.Green;
 
             Add($"Drag end", color, 9);
 
             VisualLogs.Default
-                .DrawPoint(args.Pos)
+                .DrawPoint(e.Pos)
                 .WithColor(color)
                 .KeepAlive(LongLifeTime, false);
         }
 
-        public void OnKeyDown(KeyboardKeyEventArgs args)
+        public void OnKeyDown(KeyboardKeyEventArgs e)
         {
-            Add($"Key down: {args.Key}", ColorRgba.Blue, 10);
+            Add($"Key down: {e.Key}", ColorRgba.Blue, 10);
         }
 
-        public void OnKeyUp(KeyboardKeyEventArgs args)
+        public void OnKeyUp(KeyboardKeyEventArgs e)
         {
-            Add($"Key up: {args.Key}", ColorRgba.Green, 11);
+            Add($"Key up: {e.Key}", ColorRgba.Green, 11);
         }
 
-        public void OnWheelChanged(MouseWheelEventArgs args)
+        public void OnWheelChanged(MouseWheelEventArgs e)
         {
-            Add($"Wheel changed: (x = {args.WheelValue}, v = {args.WheelSpeed})", ColorRgba.LightGrey, 12);
+            Add($"Wheel changed: (x = {e.WheelValue}, v = {e.WheelSpeed})", ColorRgba.LightGrey, 12);
+        }
+
+        public void OnWindowSizeChanged(ResizeEventArgs e)
+        {
+            Add($"Resize: (old = {e.OldSize}, new = {e.NewSize})", ColorRgba.LightGrey, 13);
         }
     }
 }
