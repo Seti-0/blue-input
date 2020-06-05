@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Duality;
 using Duality.Resources;
 
-namespace Soulstone.Duality.Plugins.Blue.Input
+namespace Soulstone.Duality.Plugins.BlueInput
 {
     public static class BlueInputApp
     {

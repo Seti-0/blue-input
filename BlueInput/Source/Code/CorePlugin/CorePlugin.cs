@@ -5,7 +5,7 @@ using System.Text;
 
 using Duality;
 
-namespace Soulstone.Duality.Plugins.Blue.Input
+namespace Soulstone.Duality.Plugins.BlueInput
 {
 	public class BlueInputPlugin : CorePlugin {}
 }

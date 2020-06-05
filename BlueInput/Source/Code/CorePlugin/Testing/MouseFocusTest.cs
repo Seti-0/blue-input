@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Duality;
 using Duality.Editor;
 
-namespace Soulstone.Duality.Plugins.Blue.Input.Testing
+namespace Soulstone.Duality.Plugins.BlueInput.Testing
 {
     [EditorHintCategory(CategoryNames.Testing)]
     public class MouseFocusTest : Component, ICmpUpdatable

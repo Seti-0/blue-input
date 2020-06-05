@@ -8,10 +8,10 @@ using Duality;
 using Duality.Drawing;
 using Duality.Components.Renderers;
 
-using Soulstone.Duality.Plugins.Blue.Input.Selection;
+using Soulstone.Duality.Plugins.BlueInput.Selection;
 using Duality.Editor;
 
-namespace Soulstone.Duality.Plugins.Blue.Input.Testing
+namespace Soulstone.Duality.Plugins.BlueInput.Testing
 {
     [EditorHintCategory(CategoryNames.Testing)]
     public class SelectionTest : Selection<SpriteRenderer>, ICmpUpdatable

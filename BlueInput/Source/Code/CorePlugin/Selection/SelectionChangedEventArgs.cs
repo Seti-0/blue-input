@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Soulstone.Duality.Plugins.Blue.Input.Selection
+namespace Soulstone.Duality.Plugins.BlueInput.Selection
 {
     public class SelectionChangedEventArgs<T> : EventArgs where T : class
     {

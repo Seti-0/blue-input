@@ -9,7 +9,7 @@ using Duality.Input;
 
 using Duality.Editor;
 
-namespace Soulstone.Duality.Plugins.Blue.Input
+namespace Soulstone.Duality.Plugins.BlueInput
 {
     [EditorHintCategory(BlueInputCategoryNames.Components)]
     [RequiredComponent(typeof(MouseListener))]

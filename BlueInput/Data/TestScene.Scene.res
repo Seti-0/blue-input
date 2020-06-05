@@ -100,7 +100,7 @@
             <children />
             <compList dataType="Struct" type="System.Collections.Generic.List`1[[Duality.Component]]" id="4205310522">
               <_items dataType="Array" type="Duality.Component[]" id="37633280" length="4">
-                <item dataType="Struct" type="Soulstone.Duality.Plugins.Blue.Input.Testing.SelectionTest" id="3707617968">
+                <item dataType="Struct" type="Soulstone.Duality.Plugins.BlueInput.Testing.SelectionTest" id="3885856518">
                   <_messageContent />
                   <_messageTime dataType="Double">0</_messageTime>
                   <_x003C_Color_x003E_k__BackingField dataType="Struct" type="Duality.Drawing.ColorRgba">
@@ -112,7 +112,7 @@
                   <_x003C_FreezeOnDrag_x003E_k__BackingField dataType="Bool">false</_x003C_FreezeOnDrag_x003E_k__BackingField>
                   <_x003C_MessageChannel_x003E_k__BackingField dataType="Int">1</_x003C_MessageChannel_x003E_k__BackingField>
                   <_x003C_MessageLifetime_x003E_k__BackingField dataType="Float">1E+10</_x003C_MessageLifetime_x003E_k__BackingField>
-                  <_x003C_SelectionTrigger_x003E_k__BackingField dataType="Enum" type="Soulstone.Duality.Plugins.Blue.Input.Selection.SelectionTrigger" name="MouseDown" value="1" />
+                  <_x003C_SelectionTrigger_x003E_k__BackingField dataType="Enum" type="Soulstone.Duality.Plugins.BlueInput.Selection.SelectionTrigger" name="MouseDown" value="1" />
                   <active dataType="Bool">true</active>
                   <gameobj dataType="ObjectRef">1064589658</gameobj>
                 </item>
@@ -123,10 +123,10 @@
               <header />
               <body>
                 <keys dataType="Array" type="System.Object[]" id="3076666752">
-                  <item dataType="Type" id="3220268444" value="Soulstone.Duality.Plugins.Blue.Input.Testing.SelectionTest" />
+                  <item dataType="Type" id="3220268444" value="Soulstone.Duality.Plugins.BlueInput.Testing.SelectionTest" />
                 </keys>
                 <values dataType="Array" type="System.Object[]" id="2324601038">
-                  <item dataType="ObjectRef">3707617968</item>
+                  <item dataType="ObjectRef">3885856518</item>
                 </values>
               </body>
             </compMap>
@@ -147,7 +147,7 @@
             <children />
             <compList dataType="Struct" type="System.Collections.Generic.List`1[[Duality.Component]]" id="1892163580">
               <_items dataType="Array" type="Duality.Component[]" id="1984246596" length="4">
-                <item dataType="Struct" type="Soulstone.Duality.Plugins.Blue.Input.Testing.MouseFocusTest" id="831110799">
+                <item dataType="Struct" type="Soulstone.Duality.Plugins.BlueInput.Testing.MouseFocusTest" id="3130969853">
                   <active dataType="Bool">true</active>
                   <gameobj dataType="ObjectRef">248901068</gameobj>
                 </item>
@@ -158,10 +158,10 @@
               <header />
               <body>
                 <keys dataType="Array" type="System.Object[]" id="3850288470">
-                  <item dataType="Type" id="2386947616" value="Soulstone.Duality.Plugins.Blue.Input.Testing.MouseFocusTest" />
+                  <item dataType="Type" id="2386947616" value="Soulstone.Duality.Plugins.BlueInput.Testing.MouseFocusTest" />
                 </keys>
                 <values dataType="Array" type="System.Object[]" id="1957478618">
-                  <item dataType="ObjectRef">831110799</item>
+                  <item dataType="ObjectRef">3130969853</item>
                 </values>
               </body>
             </compMap>
@@ -182,7 +182,7 @@
             <children />
             <compList dataType="Struct" type="System.Collections.Generic.List`1[[Duality.Component]]" id="832918451">
               <_items dataType="Array" type="Duality.Component[]" id="1358373414" length="4">
-                <item dataType="Struct" type="Soulstone.Duality.Plugins.Blue.Input.Testing.InputEventTest" id="3068035673">
+                <item dataType="Struct" type="Soulstone.Duality.Plugins.BlueInput.Testing.InputEventTest" id="1072927431">
                   <_x003C_LongLifeTime_x003E_k__BackingField dataType="Float">1000</_x003C_LongLifeTime_x003E_k__BackingField>
                   <active dataType="Bool">true</active>
                   <gameobj dataType="ObjectRef">1514197647</gameobj>
@@ -194,10 +194,10 @@
               <header />
               <body>
                 <keys dataType="Array" type="System.Object[]" id="52306393">
-                  <item dataType="Type" id="1752033742" value="Soulstone.Duality.Plugins.Blue.Input.Testing.InputEventTest" />
+                  <item dataType="Type" id="1752033742" value="Soulstone.Duality.Plugins.BlueInput.Testing.InputEventTest" />
                 </keys>
                 <values dataType="Array" type="System.Object[]" id="2341743104">
-                  <item dataType="ObjectRef">3068035673</item>
+                  <item dataType="ObjectRef">1072927431</item>
                 </values>
               </body>
             </compMap>
@@ -218,7 +218,7 @@
             <children />
             <compList dataType="Struct" type="System.Collections.Generic.List`1[[Duality.Component]]" id="1442955922">
               <_items dataType="Array" type="Duality.Component[]" id="577321040" length="4">
-                <item dataType="Struct" type="Soulstone.Duality.Plugins.Blue.Input.Testing.SelectionTest" id="911153528">
+                <item dataType="Struct" type="Soulstone.Duality.Plugins.BlueInput.Testing.SelectionTest" id="1089392078">
                   <_messageContent />
                   <_messageTime dataType="Double">0</_messageTime>
                   <_x003C_Color_x003E_k__BackingField dataType="Struct" type="Duality.Drawing.ColorRgba">
@@ -230,7 +230,7 @@
                   <_x003C_FreezeOnDrag_x003E_k__BackingField dataType="Bool">false</_x003C_FreezeOnDrag_x003E_k__BackingField>
                   <_x003C_MessageChannel_x003E_k__BackingField dataType="Int">2</_x003C_MessageChannel_x003E_k__BackingField>
                   <_x003C_MessageLifetime_x003E_k__BackingField dataType="Float">1E+10</_x003C_MessageLifetime_x003E_k__BackingField>
-                  <_x003C_SelectionTrigger_x003E_k__BackingField dataType="Enum" type="Soulstone.Duality.Plugins.Blue.Input.Selection.SelectionTrigger" name="MouseUp" value="0" />
+                  <_x003C_SelectionTrigger_x003E_k__BackingField dataType="Enum" type="Soulstone.Duality.Plugins.BlueInput.Selection.SelectionTrigger" name="MouseUp" value="0" />
                   <active dataType="Bool">true</active>
                   <gameobj dataType="ObjectRef">2563092514</gameobj>
                 </item>
@@ -244,7 +244,7 @@
                   <item dataType="ObjectRef">3220268444</item>
                 </keys>
                 <values dataType="Array" type="System.Object[]" id="616325854">
-                  <item dataType="ObjectRef">911153528</item>
+                  <item dataType="ObjectRef">1089392078</item>
                 </values>
               </body>
             </compMap>
@@ -265,7 +265,7 @@
             <children />
             <compList dataType="Struct" type="System.Collections.Generic.List`1[[Duality.Component]]" id="3809133402">
               <_items dataType="Array" type="Duality.Component[]" id="2090635776" length="4">
-                <item dataType="Struct" type="Soulstone.Duality.Plugins.Blue.Input.Testing.SelectionTest" id="98798608">
+                <item dataType="Struct" type="Soulstone.Duality.Plugins.BlueInput.Testing.SelectionTest" id="277037158">
                   <_messageContent />
                   <_messageTime dataType="Double">0</_messageTime>
                   <_x003C_Color_x003E_k__BackingField dataType="Struct" type="Duality.Drawing.ColorRgba">
@@ -277,7 +277,7 @@
                   <_x003C_FreezeOnDrag_x003E_k__BackingField dataType="Bool">false</_x003C_FreezeOnDrag_x003E_k__BackingField>
                   <_x003C_MessageChannel_x003E_k__BackingField dataType="Int">0</_x003C_MessageChannel_x003E_k__BackingField>
                   <_x003C_MessageLifetime_x003E_k__BackingField dataType="Float">1E+10</_x003C_MessageLifetime_x003E_k__BackingField>
-                  <_x003C_SelectionTrigger_x003E_k__BackingField dataType="Enum" type="Soulstone.Duality.Plugins.Blue.Input.Selection.SelectionTrigger" name="MouseOver" value="2" />
+                  <_x003C_SelectionTrigger_x003E_k__BackingField dataType="Enum" type="Soulstone.Duality.Plugins.BlueInput.Selection.SelectionTrigger" name="MouseOver" value="2" />
                   <active dataType="Bool">true</active>
                   <gameobj dataType="ObjectRef">1750737594</gameobj>
                 </item>
@@ -291,7 +291,7 @@
                   <item dataType="ObjectRef">3220268444</item>
                 </keys>
                 <values dataType="Array" type="System.Object[]" id="770795662">
-                  <item dataType="ObjectRef">98798608</item>
+                  <item dataType="ObjectRef">277037158</item>
                 </values>
               </body>
             </compMap>
@@ -312,7 +312,7 @@
             <children />
             <compList dataType="Struct" type="System.Collections.Generic.List`1[[Duality.Component]]" id="881067163">
               <_items dataType="Array" type="Duality.Component[]" id="3708067734" length="4">
-                <item dataType="Struct" type="Soulstone.Duality.Plugins.Blue.Input.Testing.SelectionTest" id="2116500285">
+                <item dataType="Struct" type="Soulstone.Duality.Plugins.BlueInput.Testing.SelectionTest" id="2294738835">
                   <_messageContent />
                   <_messageTime dataType="Double">0</_messageTime>
                   <_x003C_Color_x003E_k__BackingField dataType="Struct" type="Duality.Drawing.ColorRgba">
@@ -324,7 +324,7 @@
                   <_x003C_FreezeOnDrag_x003E_k__BackingField dataType="Bool">false</_x003C_FreezeOnDrag_x003E_k__BackingField>
                   <_x003C_MessageChannel_x003E_k__BackingField dataType="Int">3</_x003C_MessageChannel_x003E_k__BackingField>
                   <_x003C_MessageLifetime_x003E_k__BackingField dataType="Float">1E+10</_x003C_MessageLifetime_x003E_k__BackingField>
-                  <_x003C_SelectionTrigger_x003E_k__BackingField dataType="Enum" type="Soulstone.Duality.Plugins.Blue.Input.Selection.SelectionTrigger" name="MouseClick" value="3" />
+                  <_x003C_SelectionTrigger_x003E_k__BackingField dataType="Enum" type="Soulstone.Duality.Plugins.BlueInput.Selection.SelectionTrigger" name="MouseClick" value="3" />
                   <active dataType="Bool">true</active>
                   <gameobj dataType="ObjectRef">3768439271</gameobj>
                 </item>
@@ -338,7 +338,7 @@
                   <item dataType="ObjectRef">3220268444</item>
                 </keys>
                 <values dataType="Array" type="System.Object[]" id="898954208">
-                  <item dataType="ObjectRef">2116500285</item>
+                  <item dataType="ObjectRef">2294738835</item>
                 </values>
               </body>
             </compMap>

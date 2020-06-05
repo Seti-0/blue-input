@@ -1,4 +1,4 @@
-﻿namespace Soulstone.Duality.Plugins.Blue.Input.Selection
+﻿namespace Soulstone.Duality.Plugins.BlueInput.Selection
 {
     public enum SelectionTrigger
     {

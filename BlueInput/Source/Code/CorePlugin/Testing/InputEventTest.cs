@@ -9,7 +9,7 @@ using Duality.Drawing;
 using Duality.Editor;
 using Duality.Input;
 
-namespace Soulstone.Duality.Plugins.Blue.Input.Testing
+namespace Soulstone.Duality.Plugins.BlueInput.Testing
 {
     [EditorHintCategory(CategoryNames.Testing)]
     public class InputEventTest : Component, ICmpUpdatable, ICmpMouseListener, ICmpMouseWheelListener, ICmpMouseDragListener, ICmpKeyListener

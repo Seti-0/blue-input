@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Duality;
 using Duality.Input;
 
-namespace Soulstone.Duality.Plugins.Blue.Input
+namespace Soulstone.Duality.Plugins.BlueInput
 {
     public interface ICmpMouseWheelListener : IManageableObject
     {

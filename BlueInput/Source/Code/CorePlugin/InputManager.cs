@@ -10,9 +10,9 @@ using Duality.Input;
 using Duality.Components;
 using Duality.Resources;
 using Duality.Editor;
-using Soulstone.Duality.Plugins.Blue.Input.Selection;
+using Soulstone.Duality.Plugins.BlueInput.Selection;
 
-namespace Soulstone.Duality.Plugins.Blue.Input
+namespace Soulstone.Duality.Plugins.BlueInput
 {
     [EditorHintCategory(CategoryNames.Components)]
     public class InputManager : Component, ICmpInitializable, ICmpUpdatable

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Duality;
 
-namespace Soulstone.Duality.Plugins.Blue.Input.Selection
+namespace Soulstone.Duality.Plugins.BlueInput.Selection
 {
     public interface ICmpSelection : IManageableObject
     {

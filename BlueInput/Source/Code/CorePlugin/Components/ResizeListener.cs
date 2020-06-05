@@ -8,7 +8,7 @@ using Duality;
 
 using Duality.Editor;
 
-namespace Soulstone.Duality.Plugins.Blue.Input
+namespace Soulstone.Duality.Plugins.BlueInput
 {
     [EditorHintCategory(BlueInputCategoryNames.Components)]
     public class ResizeListener : Component, ICmpResizeListener

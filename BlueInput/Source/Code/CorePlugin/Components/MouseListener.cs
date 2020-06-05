@@ -9,7 +9,7 @@ using Duality.Input;
 
 using Duality.Editor;
 
-namespace Soulstone.Duality.Plugins.Blue.Input
+namespace Soulstone.Duality.Plugins.BlueInput
 {
     [EditorHintCategory(BlueInputCategoryNames.Components)]
     public class MouseListener : Component, ICmpMouseListener, ICmpMouseDragListener, ICmpMouseWheelListener

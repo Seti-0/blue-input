@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Duality;
+using Duality.Editor;
 
-namespace Soulstone.Duality.Plugins.Blue.Input.Selection
+namespace Soulstone.Duality.Plugins.BlueInput.Selection
 {
-    public class Selection<T> : Component, ICmpSelection where T : class
+    public abstract class Selection<T> : Component, ICmpSelection where T : class
     {
         public SelectionTrigger SelectionTrigger { get; set; }
 
@@ -80,9 +81,9 @@ namespace Soulstone.Duality.Plugins.Blue.Input.Selection
             }
         }
 
-        protected virtual void OnValueChanged(SelectionChangedEventArgs<T> e)
-        {
-            //_selectionChanged?.Invoke(this, e);
-        }
+        protected abstract void OnValueChanged(SelectionChangedEventArgs<T> e);
+        /*{
+            _selectionChanged?.Invoke(this, e);
+        }*/
     }
 }
